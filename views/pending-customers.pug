@@ -1,0 +1,33 @@
+html
+  head
+    title= title
+    style
+      include ../src/style.css
+  body
+    nav(class='navbar navbar-expand-md navbar-dark bg-dark')
+      a(class='navbar-brand' href='http://192.168.1.176:5000') Camwerkz
+      div(class='collapse navbar-collapse' id='navbarsExampleDefault')
+        ul(class='navbar-nav mr-auto')
+          li(class='nav-item')
+            a(class='nav-link' href='http://192.168.1.176:5000/get-qb-credentials') Get QB Credentials
+    div(class='container mt-3')
+      div(class='row')
+        div(class='col-lg-12')
+          div(class='alert alert-warning' role='alert') You can manually sync each customer. If Quickbooks access token is invalid, system will reauthenticate with Quickbooks and this page will reload.
+      div(class='row')
+        div(class='col-lg-12')
+          table(class='table')
+            thead(class='thead-dark')
+              tr
+                th(scope='col') Customer Name
+                th(scope='col') Action
+              each val in pendingCustomers
+                tr
+                  td
+                    a(href='http://localhost:3000/customers/' + val._id target='_blank')= val.name
+                  td
+                    a(href='/sync-customer?id=' + val._id) Sync
+    script
+      include ../src/jquery.js
+      include ../src/popper.js
+      include ../src/bootstrap.js
