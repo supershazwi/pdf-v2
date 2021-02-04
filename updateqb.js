@@ -434,6 +434,7 @@ const syncinvoice = (invoiceId, oauthClient) => {
                     				  			    }
             				  			  		}).then(function(response){
             				  			  			const body = {
+            				  			  				TxnDate: response.json.Invoice.TxnDate,
 	                    				  				Id: bookingStatus.quickbooksInvoiceQueryId,
 	                    				  				DocNumber: bookingStatus.quickbooksInvoiceId,
 	                    				  				SyncToken: response.json.Invoice.SyncToken,
